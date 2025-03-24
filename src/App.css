@@ -1,0 +1,185 @@
+/* Asegura que no se pueda desplazar horizontalmente */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  background-color: #333; /* Fondo gris oscuro */
+}
+
+/* Contenedor principal centrado */
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+}
+
+/* Header: todo el contenido a la derecha */
+.header {
+  display: flex;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  width: calc(100% - 40px);
+  padding: 20px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Contenedor para elementos en el header a la derecha */
+.right-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Enlaces de navegación en el header */
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Perfil del usuario */
+.profile-container {
+  cursor: pointer;
+  position: relative; /* Para el dropdown */
+}
+
+.profile-icon {
+  border-radius: 50%;
+  /* Se eliminó posicionamiento absoluto para que se alinee en el contenedor flex */
+}
+
+/* Dropdown, repositioned: change right property */
+/* Cambio la posición del desplegable para desplazarlo a la izquierda */
+.dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  min-width: 200px; /* Ancho mínimo para que el contenido no se rompa */
+}
+
+.dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown li {
+  margin: 5px 0;
+  cursor: pointer;
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.dropdown a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Contenido principal: se sube aún más el contenido */
+.main-content {
+  margin-top: 50px; /* Margen superior reducido para subir el contenido */
+}
+
+/* Map container: posición relativa para superponer los iconos */
+.map-container {
+  position: relative;
+  margin: 0 auto;
+  width: 500px;
+  height: auto;
+}
+
+.map-container img {
+  width: 100%;    /* La imagen ocupa todo el ancho del contenedor */
+  height: auto;   /* Mantiene la proporción */
+}
+
+/* Estilo para el popup de cada marcador */
+.marker-popup {
+  background: #fff;
+  color: #333;
+  padding: 5px;
+  border-radius: 4px;
+  position: absolute;
+  top: 35px; /* Ajusta la posición vertical respecto al icono */
+  left: -20px; /* Ajusta la posición horizontal */
+  width: 150px;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* Estilos para las barras de búsqueda */
+.search-bars {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.search-bars input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  width: 200px;
+}
+
+/* Estilos del modal para el formulario de login */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
