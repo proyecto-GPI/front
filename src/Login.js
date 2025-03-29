@@ -8,14 +8,33 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Ejemplo: credenciales admin/admin
-    if (username === "admin" && password === "admin") {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        // Se envían los datos en el formato que espera la API: email y password.
+        body: JSON.stringify({ email: username, password })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.detail || "Error en la autenticación");
+        return;
+      }
+      
+      const data = await response.json();
+      const userid = data.id;
       alert("¡Login exitoso!");
       setError("");
-    } else {
-      setError("Credenciales inválidas. Intenta de nuevo.");
+      // Aquí puedes guardar datos (por ejemplo, un token o el id) y redirigir
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Error en el login:", err);
+      setError("Error interno. Inténtalo más tarde.");
     }
   };
 
@@ -29,11 +48,11 @@ function Login() {
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <label htmlFor="username">Usuario:</label>
+            <label htmlFor="username">Email:</label>
             <input
               type="text"
               id="username"
-              placeholder="Introduce tu usuario"
+              placeholder="Introduce tu email"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />

@@ -10,14 +10,47 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
       setError("Las contraseñas no coinciden");
-    } else {
-      // Aquí iría la lógica para procesar el registro.
+      return;
+    }
+
+    // Construir el objeto con los datos que espera la API
+    const registerData = {
+      email: email,
+      password: password,
+      name: `${firstName} ${lastName}`,
+      id: dni,
+      customer_type: "standard"  // Puedes cambiarlo según corresponda
+    };
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(registerData)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.detail || "Error en el registro");
+        return;
+      }
+      
+      // Si la respuesta es exitosa, procesamos los datos recibidos
+      const data = await response.json();
       alert("Registro exitoso!");
       setError("");
+      // Opcional: puedes limpiar el formulario o redirigir a otra página aquí
+
+    } catch (err) {
+      console.error("Error en el registro:", err);
+      setError("Error interno. Inténtalo más tarde.");
     }
   };
 
