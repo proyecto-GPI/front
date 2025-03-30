@@ -33,6 +33,11 @@ function App() {
     setActiveMarker(activeMarker === marker.id ? null : marker.id);
   };
 
+  const openRenting = () => {
+    navigate("/renting");  // Redirige a la ruta de Renting
+    setDropdownVisible(false);
+  };
+
   return (
     <div className="App">
       <header className="header">
@@ -82,9 +87,22 @@ function App() {
             </div>
           ))}
         </div>
-        <div className="search-bars">
-          <input type="text" placeholder="Buscar oficina..." />
-          <input type="text" placeholder="Buscar oficina..." />
+        <div className="rental-section">
+          <div className="rental-filters">
+            <input type="text" placeholder="Ubicación" />
+            <input type="text" placeholder="Destino" />
+          </div>
+          <div className="rental-dates">
+            <div className="date-time">
+              <input type="date" placeholder="Fecha de inicio" />
+              <input type="time" placeholder="Hora de inicio" />
+            </div>
+            <div className="date-time">
+              <input type="date" placeholder="Fecha de devolución" />
+              <input type="time" placeholder="Hora de devolución" />
+            </div>
+          </div>
+          <button className="search-button" onClick={openRenting}>Buscar</button>
         </div>
       </main>
     </div>
@@ -92,3 +110,4 @@ function App() {
 }
 
 export default App;
+
