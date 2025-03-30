@@ -17,7 +17,7 @@ function Login() {
           "Content-Type": "application/json"
         },
         // Se envían los datos en el formato que espera la API: email y password.
-        body: JSON.stringify({ email: username, password })
+        body: JSON.stringify({ correo: username, contrasenya: password })
       });
 
       if (!response.ok) {

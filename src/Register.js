@@ -20,11 +20,11 @@ function Register() {
 
     // Construir el objeto con los datos que espera la API
     const registerData = {
-      email: email,
-      password: password,
-      name: `${firstName} ${lastName}`,
+      correo: email,
+      contrasenya: password,
+      nombre: `${firstName} ${lastName}`,
       id: dni,
-      customer_type: "standard"  // Puedes cambiarlo según corresponda
+      tipo_cliente: "particular"  // Puedes cambiarlo según corresponda
     };
 
     try {
