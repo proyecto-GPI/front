@@ -1,3 +1,4 @@
+
 /* Asegura que no se pueda desplazar horizontalmente */
 body {
   margin: 0;
@@ -97,6 +98,7 @@ body {
   margin: 0 auto;
   width: 500px;
   height: auto;
+  overflow: visible; /* Asegurar de que no limita el contenido */
 }
 
 .map-container img {
@@ -116,22 +118,80 @@ body {
   width: 150px;
   text-align: center;
   font-size: 12px;
+  z-index: 1000; /* Aseguramos que el z-index de otros elementos */
 }
 
-/* Estilos para las barras de búsqueda */
-.search-bars {
+/* Estilos para las barras de búsqueda  de alquiler debajo del mapa*/
+.rental-section {
+  text-align: center;
   margin-top: 20px;
+  background-color: #444;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Filtros de ubicación y destino */
+.rental-filters {
   display: flex;
   justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+/* Contenedor de fecha y hora */
+.rental-dates {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.date-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-time label {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Agrupación de fecha y hora */
+.input-group {
+  display: flex;
   gap: 10px;
 }
 
-.search-bars input {
+/* Inputs */
+.input-field {
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 5px;
   border: none;
-  width: 200px;
+  width: 150px;
+  text-align: center;
 }
+
+/* Botón de búsqueda */
+.search-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
 
 /* Estilos del modal para el formulario de login */
 .modal {
@@ -183,3 +243,4 @@ body {
   color: red;
   margin-bottom: 10px;
 }
+
