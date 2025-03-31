@@ -11,8 +11,8 @@ function App() {
 
   // Parámetros para ajustar las localizaciones de las oficinas (markers)
   const markers = [
-    { id: 1, name: "Oficina Central", location: "Calle Mayor, 1, Madrid", top: '30%', left: '40%' },
-    { id: 2, name: "Sucursal Norte", location: "Avenida del Norte, 123, Barcelona", top: '50%', left: '50%' }
+    { id: 1, name: "Oficina Central", location: "Calle Mayor, 1, Madrid", top: '35%', left: '37%' },
+    { id: 2, name: "Sucursal Norte", location: "Avenida del Norte, 123, Barcelona", top: '23%', left: '78%' }
   ];
 
   const toggleDropdown = () => {
@@ -89,7 +89,7 @@ function App() {
         </div>
         <div className="rental-section">
           <div className="rental-filters">
-            <input type="text" placeholder="Ubicación" />
+            <input type="text" placeholder="Origen" />
             <input type="text" placeholder="Destino" />
           </div>
           <div className="rental-dates">
@@ -110,4 +110,3 @@ function App() {
 }
 
 export default App;
-
