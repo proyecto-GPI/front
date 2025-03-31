@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./Renting.css"; // Importamos el CSS
+import "./Renting.css";
 
 const Renting = () => {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -13,6 +13,11 @@ const Renting = () => {
       image: "https://source.unsplash.com/400x250/?tesla",
       price: "499€/mes",
       features: ["Eléctrico", "Autonomía 500km", "0-100km/h en 3.1s"],
+      extras: [
+        { name: "Autopilot", price: 50 },
+        { name: "Seguro premium", price: 30 },
+        { name: "WiFi", price: 8 },
+      ],
     },
     {
       id: 2,
@@ -20,6 +25,10 @@ const Renting = () => {
       image: "https://source.unsplash.com/400x250/?bmw",
       price: "399€/mes",
       features: ["Motor 2.0L", "Autonomía 800km", "Caja automática"],
+      extras: [
+        { name: "Seguro básico", price: 20 },
+        { name: "GPS", price: 10 },
+      ],
     },
     {
       id: 3,
@@ -27,22 +36,29 @@ const Renting = () => {
       image: "https://source.unsplash.com/400x250/?audi",
       price: "429€/mes",
       features: ["Tracción Quattro", "Pantalla digital", "Asientos de cuero"],
+      extras: [
+        { name: "Silla infantil", price: 15 },
+        { name: "Seguro premium", price: 30 },
+      ],
     },
   ];
 
-  const extras = ["GPS", "Seguro", "Silla infantil", "WiFi"];
-
   const togglePopup = (car) => {
-    setActiveCar(car); // Actualizamos el estado con el coche seleccionado
+    setActiveCar(car);
+    setSelectedExtras([]);
     setPopupVisible(!popupVisible);
   };
 
   const handleExtraChange = (extra) => {
-    setSelectedExtras((prevExtras) =>
-      prevExtras.includes(extra)
+    setSelectedExtras((prevExtras) => {
+      return prevExtras.includes(extra)
         ? prevExtras.filter((e) => e !== extra)
-        : [...prevExtras, extra]
-    );
+        : [...prevExtras, extra];
+    });
+  };
+
+  const calculateTotal = () => {
+    return selectedExtras.reduce((total, extra) => total + extra.price, 0);
   };
 
   return (
@@ -71,23 +87,24 @@ const Renting = () => {
       {popupVisible && activeCar && (
         <div className="popup">
           <div className="popup-content">
-            <h2>{activeCar.name}</h2> {/* Muestra el nombre del coche */}
+            <h2>{activeCar.name}</h2>
             <p className="price">{activeCar.price}</p>
             <h3>Extras Disponibles</h3>
             <ul>
-              {extras.map((extra) => (
-                <li key={extra}>
+              {activeCar.extras.map((extra, index) => (
+                <li key={index}>
                   <label>
                     <input
                       type="checkbox"
                       checked={selectedExtras.includes(extra)}
                       onChange={() => handleExtraChange(extra)}
                     />
-                    {extra}
+                    {extra.name} - {extra.price}€
                   </label>
                 </li>
               ))}
             </ul>
+            <p>Total Extras: {calculateTotal()}€</p>
             <button className="close-popup" onClick={() => setPopupVisible(false)}>
               Cerrar
             </button>
