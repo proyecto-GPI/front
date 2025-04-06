@@ -115,4 +115,4 @@ const Renting = () => {
   );
 };
 
-export default Renting;
+
