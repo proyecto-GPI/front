@@ -44,20 +44,20 @@ function Register() {
       
       // Si la respuesta es exitosa, procesamos los datos recibidos
       const data = await response.json();
-      alert("Registro exitoso!");
+      alert("Se ha completado el registro con éxito. Por favor, inicia sesión.");
       setError("");
       // Opcional: puedes limpiar el formulario o redirigir a otra página aquí
-
+      navigate("/login");   // Redirige a la ruta de Login
     } catch (err) {
       console.error("Error en el registro:", err);
-      setError("Error interno. Inténtalo más tarde.");
+      setError("Se ha producido un error inesperado. Por favor, inténtalo más tarde.");
     }
   };
 
   return (
     <div className="register-page">
       <div className="register-form-container">
-        <h2>Registro</h2>
+        <h2>Registro de usuario</h2>
         <form onSubmit={handleRegister}>
           <div className="form-row">
             <div className="form-group">
