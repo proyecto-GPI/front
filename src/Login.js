@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { AppContext } from './AppContext'; // Ajusta la ruta según corresponda
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  // Obtén los setters del contexto
+  const { 
+    csetFirstName,
+    csetLastName,
+    csetDni,
+    csetEmail,
+    csetPassword,
+    csetConfirmPassword,
+    cid,
+    cofinicio,
+    cSetid
+  } = useContext(AppContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -28,10 +41,17 @@ function Login() {
       
       const data = await response.json();
       const userid = data.id;
-      alert("¡Login exitoso!");
+      cSetid(data.id);
       setError("");
       // Aquí puedes guardar datos (por ejemplo, un token o el id) y redirigir
-      navigate("/dashboard");
+      if(cofinicio){
+        navigate("/renting");
+
+      }
+      else{
+        navigate("/");
+
+      }
     } catch (err) {
       console.error("Error en el login:", err);
       setError("Error interno. Inténtalo más tarde.");

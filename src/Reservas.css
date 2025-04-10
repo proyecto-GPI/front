@@ -1,0 +1,49 @@
+.reservas-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .reservas-container h1 {
+    margin-bottom: 20px;
+  }
+  
+  .reservas-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .reservas-container form div {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .reservas-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .reservas-container input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .reservas-container button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .reservas-container button:hover {
+    background-color: #0056b3;
+  }
+  

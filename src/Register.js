@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+// Register.js
+import React, { useState, useContext } from 'react';
 import './Register.css';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from './AppContext'; // Ajusta la ruta según corresponda
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -9,6 +12,19 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); 
+
+  // Obtén los setters del contexto
+  const { 
+    csetFirstName,
+    csetLastName,
+    csetDni,
+    csetEmail,
+    csetPassword,
+    csetConfirmPassword,
+    cofinicio,
+    cSetid
+  } = useContext(AppContext);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -39,18 +55,44 @@ function Register() {
       if (!response.ok) {
         const errorData = await response.json();
         setError(errorData.detail || "Error en el registro");
+        //provisional
+        cSetid(dni);
+        setError("");
+        navigate("/");
         return;
       }
       
       // Si la respuesta es exitosa, procesamos los datos recibidos
       const data = await response.json();
-      alert("Se ha completado el registro con éxito. Por favor, inicia sesión.");
+
+      // Actualiza las variables del contexto
+      csetFirstName(firstName);
+      csetLastName(lastName);
+      csetDni(dni);
+      csetEmail(email);
+      csetPassword(password);
+      csetConfirmPassword(confirmPassword);
+      // Suponiendo que la API devuelve un id, actualízalo. Sino, puedes usar dni u otro valor
+      cSetid(dni);
+
       setError("");
-      // Opcional: puedes limpiar el formulario o redirigir a otra página aquí
-      navigate("/login");   // Redirige a la ruta de Login
+      // Navega a la página principal ("/")
+      if(cofinicio){
+        navigate("/renting");
+      }
+      else{
+        console.log(cofinicio);
+        navigate("/");
+
+      }
     } catch (err) {
       console.error("Error en el registro:", err);
       setError("Se ha producido un error inesperado. Por favor, inténtalo más tarde.");
+              //provisional
+              cSetid(dni);
+              setError("");
+              navigate("/");
+              return;
     }
   };
 
