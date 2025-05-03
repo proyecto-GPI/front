@@ -1,0 +1,131 @@
+/* src/Admin.css */
+
+/* 1. Contenedor principal ocupa toda la ventana y distribuye el espacio verticalmente */
+.admin-container {
+    display: flex;                    /* Flex container vertical */ 
+    flex-direction: column;
+    height: 100vh;                    /* 100% de la altura de la ventana :contentReference[oaicite:0]{index=0} */
+    background-color: #C1E1C1;        /* verde pastel */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* 2. Cabecera fija en la parte superior */
+  .admin-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .admin-header h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+  .admin-home {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+  }
+  
+  /* 3. Título de acciones con flecha */
+  .actions-title {
+    margin: 20px 0 10px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
+  .actions-title .arrow {
+    margin-right: 8px;
+  }
+  
+  /* 4. Grid de acciones que ocupa el espacio restante */
+  .actions-grid {
+    display: flex;                    /* dos columnas lado a lado :contentReference[oaicite:1]{index=1} */
+    flex: 1;                          /* ocupa todo el espacio vertical sobrante :contentReference[oaicite:2]{index=2} */
+    gap: 40px;                        /* separación horizontal entre columnas :contentReference[oaicite:3]{index=3} */
+  }
+  
+  /* 5. Columnas con distribución vertical uniforme */
+  .left-column,
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;    /* espacio igual entre botones verticalmente :contentReference[oaicite:4]{index=4} */
+    flex: 1;
+  }
+  
+  /* 6. Botones full-width con sombra y transición */
+  button {
+    width: 100%;                      /* ocupan todo el ancho de la columna */
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);    /* sombra suave :contentReference[oaicite:5]{index=5} */
+    transition: box-shadow 0.2s, transform 0.2s; /* transición suave */
+  }
+  button:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);      /* sombra más intensa al pasar el ratón :contentReference[oaicite:6]{index=6} */
+    transform: translateY(-2px);               /* ligero levantamiento :contentReference[oaicite:7]{index=7} */
+  }
+  /* … tu CSS previo … */
+
+/* Inline form bajo “Añadir oficina” */
+.office-form-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;           /* separación natural bajo el botón */
+  padding: 12px;
+  background: #f9f9f9;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+.office-form-inline label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+.office-form-inline input {
+  flex: 1;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.office-form-inline .form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Inline list bajo “Modificar oficina” */
+.office-list-inline {
+  margin-top: 8px;           /* separación natural bajo el botón */
+  padding: 8px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;          /* scroll si hay muchas oficinas */
+  transition: max-height 0.3s ease; /* animación suave de despliegue */
+}
+.office-list-inline ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.office-list-inline li {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.office-list-inline li:last-child {
+  border-bottom: none;
+}

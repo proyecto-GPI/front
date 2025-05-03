@@ -1,43 +1,46 @@
-/* Asegura que no se pueda desplazar horizontalmente */
-body {
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+html, body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
-  background-color: #333; /* Fondo gris oscuro */
+  height: 100%;
+  overflow: hidden; /* Sin scroll vertical */
+  background-color: #333;
 }
 
-/* Contenedor principal centrado */
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Contenedor principal en pantalla completa */
 .App {
   max-width: 1200px;
   margin: 0 auto;
   color: #fff;
   text-align: center;
+  height: 100vh; /* Altura completa del viewport */
+  display: flex;
+  flex-direction: column;
 }
 
-/* Header: todo el contenido a la derecha */
+/* Header reducido para ocupar menos espacio */
 .header {
   display: flex;
-  position: absolute;
-  top: 30px;
-  right: 20px;
-  width: calc(100% - 40px);
-  padding: 20px;
+  padding: 5px 10px;
   justify-content: flex-end;
   align-items: center;
 }
 
-/* Contenedor para elementos en el header a la derecha */
 .right-header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
 
-/* Enlaces de navegación en el header */
 .nav-links {
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
 .nav-links a {
@@ -46,26 +49,23 @@ body {
   font-size: 16px;
 }
 
-/* Perfil del usuario */
 .profile-container {
   cursor: pointer;
-  position: relative; /* Para el dropdown */
+  position: relative;
 }
 
 .profile-icon {
   border-radius: 50%;
-  /* Se eliminó posicionamiento absoluto para que se alinee en el contenedor flex */
 }
 
-/* Dropdown del perfil */
 .dropdown {
   position: absolute;
-  top: 60px;
+  top: 40px;
   right: 0;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 10px;
   border-radius: 5px;
-  min-width: 200px; /* Ancho mínimo para que el contenido no se rompa */
+  min-width: 200px;
 }
 
 .dropdown ul {
@@ -77,7 +77,7 @@ body {
 .dropdown li {
   margin: 5px 0;
   cursor: pointer;
-  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  white-space: nowrap;
 }
 
 .dropdown a {
@@ -85,66 +85,85 @@ body {
   text-decoration: none;
 }
 
-/* Contenido principal: se sube aún más el contenido */
+/* Área principal: el contenido se ubica desde arriba */
 .main-content {
-  margin-top: 50px; /* Margen superior reducido para subir el contenido */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
 }
 
-/* Map container: posición relativa para superponer los iconos */
+/* Título */
+.main-content h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  margin: 0;
+  padding-top: 5px;
+  transform-origin: bottom;
+  transform: scale(1.1);
+  margin-top: -30px;
+}
+
+/* Contenedor del mapa */
 .map-container {
   position: relative;
-  margin: 0 auto;
-  width: 500px;
+  margin: 5px auto;
+  width: 70%;
+  max-width: 400px;
   height: auto;
-  overflow: visible; /* Asegurar de que no limita el contenido */
+  overflow: visible;
+  transform-origin: bottom;
+  margin-top: 40px;
+  transform: scale(1.15);
 }
 
 .map-container img {
-  width: 100%;    /* La imagen ocupa todo el ancho del contenedor */
-  height: auto;   /* Mantiene la proporción */
+  width: 100%;
+  height: auto;
 }
 
-/* Estilo para el popup de cada marcador */
+/* Popup de cada marcador */
 .marker-popup {
   background: #fff;
   color: #333;
   padding: 5px;
   border-radius: 4px;
   position: absolute;
-  top: 35px; /* Ajusta la posición vertical respecto al icono */
-  left: -20px; /* Ajusta la posición horizontal */
+  top: 35px;
+  left: -20px;
   width: 150px;
   text-align: center;
   font-size: 12px;
-  z-index: 1000; /* Aseguramos que el z-index de otros elementos */
+  z-index: 1000;
 }
 
-/* Estilos para las barras de búsqueda de alquiler debajo del mapa */
+/* Sección de búsqueda de alquiler */
 .rental-section {
   text-align: center;
-  margin-top: 20px;
   background-color: #444;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   width: 80%;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 5px auto;
 }
 
-/* Filtros de ubicación y destino */
+/* Filtros de oficinas */
 .rental-filters {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 15px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-/* Contenedor de fecha y hora */
+/* Contenedor de fechas */
 .rental-dates {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .date-time {
@@ -159,7 +178,6 @@ body {
   margin-bottom: 5px;
 }
 
-/* Agrupación de fecha y hora */
 .input-group {
   display: flex;
   gap: 10px;
@@ -177,8 +195,8 @@ body {
 /* Botón de búsqueda */
 .search-button {
   display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
+  margin: 5px auto;
+  padding: 8px 15px;
   background-color: #007BFF;
   color: white;
   border: none;
@@ -190,7 +208,7 @@ body {
   background-color: #0056b3;
 }
 
-/* Estilos del modal para el formulario de login */
+/* Modal de login */
 .modal {
   position: fixed;
   top: 0;
@@ -241,25 +259,23 @@ body {
   margin-bottom: 10px;
 }
 
-/* NUEVAS REGLAS PARA EL DROPDOWN DE OFICINAS */
-/* Utiliza un contenedor para posicionar el dropdown sin afectar el layout general */
+/* Dropdown de oficinas */
 .office-dropdown-container {
   position: relative;
 }
 
-/* El dropdown se posiciona de forma absoluta, superponiéndose al contenido */
 .office-dropdown {
   position: absolute;
-  top: calc(100% + 5px); /* Justo debajo del input */
+  bottom: calc(100% + 5px); /* ← Cambiado para desplegar hacia arriba */
   left: 0;
   background-color: #fff;
   border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 1000; /* Alto para superponerse a otros elementos */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
   width: 100%;
-  max-height: 200px; /* Limita la altura si hay muchas opciones */
+  max-height: 200px;
   overflow-y: auto;
-  color: #333; /* Color del texto */
+  color: #333;
 }
 
 .office-dropdown ul {

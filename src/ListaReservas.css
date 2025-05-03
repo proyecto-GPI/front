@@ -1,0 +1,106 @@
+/* ListaReservas.css */
+
+/* Importa la fuente si la necesitas específicamente aquí, aunque es mejor en el CSS principal */
+/* @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap'); */
+
+.lista-reservas-container {
+    width: 90%; /* Ancho responsive */
+    max-width: 900px; /* Ancho máximo para la lista */
+    margin: 30px auto; /* Centrado con margen superior/inferior */
+    padding: 20px;
+    color: #fff; /* Texto blanco por defecto, como en App.css */
+    /* background-color: #3a3a3a; */ /* Fondo ligeramente distinto si se quiere separar del fondo principal #333 */
+    /* border-radius: 10px; */ /* Opcional: redondear el contenedor principal */
+    font-family: Arial, sans-serif; /* Fuente principal como en App.css body */
+  }
+  
+  .lista-reservas-container h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 2rem; /* Tamaño del título */
+    /* font-family: 'Great Vibes', cursive; */ /* Descomentar si quieres el título elegante aquí */
+  }
+  
+  .reservas-list {
+    list-style: none; /* Quita los puntos de la lista */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .reserva-item {
+    background-color: #444; /* Fondo oscuro para cada item, similar a .rental-section */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 20px 25px; /* Padding interno */
+    margin-bottom: 20px; /* Espacio entre reservas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transición suave */
+  }
+  
+  .reserva-item:hover {
+    transform: translateY(-3px); /* Ligero efecto de elevación al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .reserva-header {
+    display: flex;
+    justify-content: space-between; /* Título a la izquierda, estado a la derecha */
+    align-items: center; /* Alinea verticalmente */
+    border-bottom: 1px solid #555; /* Línea separadora */
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .reserva-header h3 {
+    margin: 0;
+    color: #00aaff; /* Un color azul claro para destacar el ID */
+    font-size: 1.2rem;
+  }
+  
+  .status-badge {
+    padding: 4px 10px;
+    border-radius: 12px; /* Forma de píldora */
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  
+  /* Colores para los estados */
+  .status-confirmada { background-color: #28a745; } /* Verde */
+  .status-en-curso { background-color: #ffc107; color: #333; } /* Amarillo */
+  .status-completada { background-color: #6c757d; } /* Gris */
+  .status-pendiente { background-color: #dc3545; } /* Rojo */
+  
+  
+  .reserva-details p {
+    margin: 8px 0; /* Espaciado entre líneas de detalle */
+    font-size: 0.9rem; /* Tamaño de fuente para detalles */
+    line-height: 1.5; /* Altura de línea para legibilidad */
+    color: #ddd; /* Color de texto ligeramente más claro que el blanco puro */
+  }
+  
+  .reserva-details strong {
+    color: #bbb; /* Color para las etiquetas (ej: "Recogida:") */
+    margin-right: 8px; /* Espacio después de la etiqueta */
+    font-weight: bold;
+  }
+  
+  .reserva-details span {
+    color: #fff; /* Asegura que las fechas/valores sean blancos */
+    /* background-color: #555; */ /* Opcional: resaltar fechas/valores */
+    /* padding: 2px 4px; */
+    /* border-radius: 3px; */
+  }
+  
+  .no-reservas {
+    text-align: center;
+    padding: 40px;
+    background-color: #444;
+    border-radius: 8px;
+  }
+  
+  .no-reservas p {
+    font-size: 1.1rem;
+    color: #ccc;
+  }

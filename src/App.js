@@ -41,8 +41,34 @@ function App() {
   }, []);
 
   const markers = [
-    { id: 1, name: "Oficina Central", location: "Calle Mayor, 1, Madrid", top: '35%', left: '37%' },
-    { id: 2, name: "Sucursal Norte", location: "Avenida del Norte, 123, Barcelona", top: '23%', left: '78%' }
+    {
+      id: 1,
+      name: "Oficina Madrid",
+      location: "Calle Mayor, 1, Madrid",
+      top: '35%',
+      left: '37%'
+    },
+    {
+      id: 2,
+      name: "Oficina Barcelona",
+      location: "Av. Diagonal, 123, Barcelona",
+      top: '21%',
+      left: '78%'
+    },
+    {
+      id: 3,
+      name: "Oficina Rota",
+      location: "Calle Cañailla, 35, Rota",
+      top: '70%',
+      left: '28%'
+    },
+    {
+      id: 4,
+      name: "Oficina Galicia",
+      location: "Calle Mártires, 15, Galicia",
+      top: '10%',
+      left: '10%'
+    }
   ];
 
   const toggleDropdown = () => {
@@ -82,9 +108,11 @@ function App() {
 
   const handleOfficeSelect = (office) => {
     if (activeInput === 'origen') {
+      csetofinicio(office);
       setOrigen(office.direccion);
       setIdOrigen(office.id_oficina);
     } else if (activeInput === 'destino') {
+      csetofinal(office);
       setDestino(office.direccion);
       setIdDestino(office.id_oficina);
     }

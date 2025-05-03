@@ -67,9 +67,6 @@ const Renting = () => {
 
       if (!cofinicio || !cfecharec || !cfechadev) return;
 
-      
-      
-
 
       const fechaInicioFormato = formatDate(cfecharec);
       const fechaFinFormato = formatDate(cfechadev);
@@ -81,6 +78,7 @@ const Renting = () => {
         fecha_inicio: fechaInicioFormato,
         fecha_fin: fechaFinFormato,
       });
+      console.log(params);
       
       const url = `http://127.0.0.1:8000/api/availability?${params.toString()}`;
       

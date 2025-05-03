@@ -1,0 +1,107 @@
+/* src/Tarifas.css */
+.tarifas-container {
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .tarifas-home {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .tarifas-title {
+    text-align: center;
+    margin: 30px auto 16px;
+    font-size: 1.4rem;
+  }
+  
+  .tarifas-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .tarifa-block {
+    width: 300px;
+    border: 1px solid #444;
+    padding: 8px;
+    border-radius: 6px;
+  }
+  
+  .tarifa-label {
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  .tarifa-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    position: relative;
+  }
+  
+  .option-name {
+    width: 40px;
+    font-size: 0.9rem;
+  }
+  
+  .option-price {
+    margin-left: 6px;
+    flex: 1;
+    font-size: 0.9rem;
+  }
+  
+  .info-icon {
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  
+  .info-box {
+    position: absolute;
+    left: 90px;
+    top: 0;
+    background: #222;
+    border: 1px solid #555;
+    padding: 4px;
+    border-radius: 4px;
+    width: 140px;
+    z-index: 10;
+    font-size: 0.85rem;
+  }
+  
+  input[type="radio"] {
+    accent-color: #0f0;
+    width: 14px;
+    height: 14px;
+  }
+  
+  .error-msg {
+    color: #f00;
+    text-align: right;
+    margin-top: 8px;
+    font-size: 0.9rem;
+  }
+  
+  .proceed-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    background: #0a0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    width: auto;
+  }
+  
