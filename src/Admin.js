@@ -49,7 +49,7 @@ export default function Admin() {
   const handleSubmit = e => {
     e.preventDefault();
     console.log('Enviar nueva oficina:', formData);
-    // aquí POST a la API…
+    // Aquí iría la lógica para hacer POST a la API…
     setAddOpen(false);
   };
 
@@ -58,23 +58,23 @@ export default function Admin() {
       <header className="admin-header" role="banner">
         <h1>Página de administrador</h1>
         <Link to="/" className="admin-home" aria-label="Inicio">
-          <FaHome size={24} title="Home" />
+          <FaHome size={40} title="Home" />
         </Link>
       </header>
 
-      <div className="actions-title"><span className="arrow">→</span> Acciones disponibles</div>
+      <div className="actions-title"> Acciones disponibles</div>
 
       <div className="actions-grid">
         <div className="left-column">
           <button onClick={toggleAdd}>Añadir oficina</button>
           {addOpen && (
-            <form className="office-form-inline" onSubmit={handleSubmit}>
+            <form className={`office-form-inline ${addOpen ? 'open' : ''}`} onSubmit={handleSubmit}>
               <label>ID:<input name="id" value={formData.id} onChange={handleChange} required /></label>
               <label>Calle:<input name="calle" value={formData.calle} onChange={handleChange} required /></label>
               <label>Ciudad:<input name="ciudad" value={formData.ciudad} onChange={handleChange} required /></label>
               <div className="form-actions">
-                <button type="submit">Guardar</button>
-                <button type="button" onClick={toggleAdd}>Cancelar</button>
+                <button type="submit" className="btn-save">Guardar</button>
+                <button type="button" className="btn-cancel" onClick={toggleAdd}>Cancelar</button>
               </div>
             </form>
           )}
@@ -84,7 +84,7 @@ export default function Admin() {
         <div className="right-column">
           <button onClick={toggleModify}>Modificar oficina</button>
           {modifyOpen && (
-            <div className="office-list-inline">
+            <div className={`office-list-inline ${modifyOpen ? 'open' : ''}`}>
               {loading ? <p>Cargando...</p> : (
                 <ul>
                   {offices.map(o => <li key={o.id}>{o.name}</li>)}
@@ -97,5 +97,5 @@ export default function Admin() {
         </div>
       </div>
     </div>
-);
+  );
 }
