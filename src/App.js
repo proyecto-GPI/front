@@ -73,8 +73,8 @@ function App() {
       id: 5,
       name: "Oficina Prueba",
       location: "xxxxx",
-      top: '13%', 
-      left: '45%'
+      top: '35%', 
+      left: '64%'
     }
   ];
 
@@ -143,17 +143,17 @@ function App() {
   - Madrid: 
      Madrid  --> top: '35%', left: '37%'
   - Murcia: 
-     Murcia 
+     Murcia --> top: '62%', left: '55%'
   - Navarra: 
      Navarra --> top: '10%', left: '51%'
   - País Vasco: 
-     Álava
-     Guipúzcoa
-     Vizcaya 
+     Álava  --> top: '8%', left: '45%'
+     Guipúzcoa  --> top: '5%', left: '48%'
+     Vizcaya --> top: '4%', left: '43%'
   - Valencia: 
-     Alicante
-     Castellón
-     Valencia
+     Alicante --> top: '58%', left: '58.5%'
+     Castellón --> top: '35%', left: '64%'
+     Valencia --> top: '48%', left: '60%'
   */ 
 
   function toggleDropdown() {
