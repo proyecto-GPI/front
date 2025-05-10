@@ -9,32 +9,32 @@ const tarifasData = [
     id: 'larga',
     label: 'Larga duración',
     options: [
-      { id: 'op1', price: '50€', info: 'Ideal para alquileres de más de 1 mes.' },
-      { id: 'op2', price: '45€', info: 'Descuento por contrato semestral.' }
+      { id: 'Por número de días', price: '50€/día', info: 'Ideal si quieres alquilar una semana' },
+      { id: 'Por número de meses', price: '2000€/mes', info: 'Ideal si quieres un alquiler prolongado' }
     ]
   },
-  {
+  /*{
     id: 'corta',
     label: 'Corta duración',
     options: [
       { id: 'op1', price: '10€', info: 'Tarifa por día.' },
       { id: 'op2', price: '60€', info: 'Paquete semanal.' }
     ]
-  },
-  {
+  }*/,
+  /*{
     id: 'estacional',
     label: 'Estacional',
     options: [
       { id: 'op1', price: '30€', info: 'Solo verano.' },
       { id: 'op2', price: '20€', info: 'Temporada baja.' }
     ]
-  },
+  }*/,
   {
     id: 'kilometraje',
     label: 'Kilometraje',
     options: [
-      { id: 'op1', price: '0.20€/km', info: 'Pago por kilómetro recorrido.' },
-      { id: 'op2', price: '100€', info: 'Kilometraje ilimitado.' }
+      { id: 'Por kilometro recorrido', price: '0.20€/km', info: 'Ideal si solo quieres moverte por ciudad' },
+      { id: 'Kilometraje ilimitado', price: '(oficina)', info: 'Se calcula el precio final, al pagar en la oficina de devolución' }
     ]
   }
 ];
@@ -96,7 +96,11 @@ export default function Tarifas() {
                 <div key={opt.id} className="tarifa-option">
                   <span className="option-name">{opt.id}</span>
                   <span className="option-price">{opt.price}</span>
-                  <FaInfoCircle className="info-icon" onClick={() => handleInfo(t.id, opt.id)} />
+                  {/*<FaInfoCircle className="info-icon" onClick={() => handleInfo(t.id, opt.id)} />*/}
+                  <FaInfoCircle  className="info-icon" 
+                   onMouseEnter={() => setShowInfoFor(`${t.id}-${opt.id}`)}
+                   onMouseLeave={() => setShowInfoFor(null)}
+                   />
                   <input
                     type="radio"
                     name="tarifa-select"
