@@ -41,7 +41,7 @@ function App() {
   }, []);
 
   const markers = [
-    {
+    /*{
       id: 1,
       name: "Oficina Madrid",
       location: "Calle Mayor, 1, Madrid",
@@ -66,14 +66,99 @@ function App() {
       id: 4,
       name: "Oficina Galicia",
       location: "Calle Mártires, 15, Galicia",
-      top: '10%',
+      top: '10%', 
       left: '10%'
+    }*/
+    {
+      id: 5,
+      name: "Oficina Prueba",
+      location: "xxxxx",
+      top: '13%', 
+      left: '45%'
     }
   ];
 
-  const toggleDropdown = () => {
+  /*COORDENADAS MAPA PARA LAS SIGUIENTES PROVINCIAS (para ciudades más concretas jugar un poco con top/left, pero por tener idea):
+  - Andalucía: 
+     Almería --> top: '70%', left: '46%'
+     Cádiz --> top: '76%', left: '21%'
+     Córdoba --> top: 63%', left: '29%'
+     Granada --> top: '70%', left: '38%'
+     Huelva --> top: '66%', left: '14%'
+     Jaén --> top: '62%', left: '37%'
+     Málaga --> top: '74%', left: '29%'
+     Sevilla --> top: '67%', left: '22%'
+  - Aragón: 
+     Huesca --> top: '15%', left: '63%'
+     Teruel --> top: ' 33%', left: '58%'
+     Zaragoza --> top: ' 21.5%', left: '56%'
+  - Asturias:
+     Asturias --> top: ' 3%', left: '23%'
+  - Cantabria: 
+     Cantabria --> top: ' 3%', left: ' 34%'
+  - Castilla y León: 
+     Ávila --> top: ' 34%', left: ' 28%'
+     Burgos --> top: ' 16%', left: ' 38%'
+     León --> top: ' 12%', left: ' 23%'
+     Palencia --> top: ' 12%', left: ' 30.5%'
+     Salamanca --> top: ' 31%', left: ' 21%'
+     Segovia --> top: ' 27%', left: ' 34%'
+     Soria --> top: ' 21%', left: ' 45%'
+     Valladolid --> top: ' 21%', left: ' 30%'
+     Zamora --> top: ' 20%', left: ' 23%'
+  - Castilla-La Mancha: 
+     Albacete --> top: ' 52%', left: ' 50%'
+     Ciudad Real --> top: ' 52%', left: ' 50%'
+     Cuenca --> top: ' 52%', left: ' 37%'
+     Guadalajara --> top: ' 32%', left: ' 45%'
+     Toledo --> top: ' 41%', left: ' 46%'
+  - Cataluña: 
+     Barcelona --> top: '21%', left: '78%'
+     Gerona --> top: '17%', left: '83%'
+     Lérida --> top: '17%', left: '72%'
+     Tarragona --> top: '25.75%', left: '70%'
+  - Extremadura: 
+     Badajoz --> top: '56%', left: '18%'
+     Cáceres --> top: '42%', left: '23%'
+  - Galicia: 
+     La Coruña --> top: '3%', left: '7%'
+     Lugo --> top: '4%', left: '12%'
+     Orense --> top: '15%', left: '13%'
+     Pontevedra --> top: '12%', left: '15%'
+  - Islas Baleares: 
+     Menorca --> top: '52%', left: '92%'
+     Mallorca --> top: '56%', left: '82%'
+     Ibiza --> top: '64.5%', left: '70%'
+     Formetera --> top: '68.5%', left: '71%'
+  - Islas Canarias (NO ESTAN)
+     La Palma
+     El Hierro
+     La Gomera
+     Tenerife
+     Gran Canaria
+     Lanzarote
+     Fuerteventura  
+  - La Rioja: 
+     La Rioja --> top: '13%', left: '45%'
+  - Madrid: 
+     Madrid  --> top: '35%', left: '37%'
+  - Murcia: 
+     Murcia 
+  - Navarra: 
+     Navarra --> top: '10%', left: '51%'
+  - País Vasco: 
+     Álava
+     Guipúzcoa
+     Vizcaya 
+  - Valencia: 
+     Alicante
+     Castellón
+     Valencia
+  */ 
+
+  function toggleDropdown() {
     setDropdownVisible(!dropdownVisible);
-  };
+  }
 
   const openLogin = () => {
     navigate("/login");
