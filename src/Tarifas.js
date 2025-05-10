@@ -81,7 +81,7 @@ export default function Tarifas() {
   return (
     <div className="tarifas-container" ref={containerRef}>
       <Link to="/" className="tarifas-home" aria-label="Inicio">
-        <FaHome size={24} title="Home" />
+        <FaHome size={40} title="Home" />
       </Link>
       <h2 className="tarifas-title">Seleccione una tarifa de entre las siguientes</h2>
       <div className="tarifas-list">
@@ -123,3 +123,4 @@ export default function Tarifas() {
     </div>
   );
 }
+
