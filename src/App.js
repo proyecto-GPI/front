@@ -52,8 +52,8 @@ function App() {
       id: 2,
       name: "Oficina Barcelona",
       location: "Av. Diagonal, 123, Barcelona",
-      top: '21%',
-      left: '78%'
+      top: '22%',
+      left: '79%'
     },
     {
       id: 3,
@@ -73,51 +73,51 @@ function App() {
       id: 5,
       name: "Oficina Prueba",
       location: "xxxxx",
-      top: '35%', 
-      left: '64%'
+      top: '27%', 
+      left: '70%'
     }
   ];
 
   /*COORDENADAS MAPA PARA LAS SIGUIENTES PROVINCIAS (para ciudades más concretas jugar un poco con top/left, pero por tener idea):
   - Andalucía: 
-     Almería --> top: '70%', left: '46%'
-     Cádiz --> top: '76%', left: '21%'
+     Almería --> top: '73%', left: '46%'
+     Cádiz --> top: '76%', left: '18%'
      Córdoba --> top: 63%', left: '29%'
      Granada --> top: '70%', left: '38%'
-     Huelva --> top: '66%', left: '14%'
+     Huelva --> top: '68.5%', left: '13.5%'
      Jaén --> top: '62%', left: '37%'
-     Málaga --> top: '74%', left: '29%'
-     Sevilla --> top: '67%', left: '22%'
+     Málaga --> top: '74%', left: '32%'
+     Sevilla --> top: '67%', left: '21%'
   - Aragón: 
-     Huesca --> top: '15%', left: '63%'
-     Teruel --> top: ' 33%', left: '58%'
+     Huesca --> top: '15%', left: '61%'
+     Teruel --> top: ' 36%', left: '56%'
      Zaragoza --> top: ' 21.5%', left: '56%'
   - Asturias:
-     Asturias --> top: ' 3%', left: '23%'
+     Asturias --> top: ' 2.5%', left: '23%'
   - Cantabria: 
-     Cantabria --> top: ' 3%', left: ' 34%'
+     Cantabria --> top: ' 2%', left: ' 35%'
   - Castilla y León: 
-     Ávila --> top: ' 34%', left: ' 28%'
+     Ávila --> top: ' 33%', left: ' 29%'
      Burgos --> top: ' 16%', left: ' 38%'
-     León --> top: ' 12%', left: ' 23%'
-     Palencia --> top: ' 12%', left: ' 30.5%'
-     Salamanca --> top: ' 31%', left: ' 21%'
-     Segovia --> top: ' 27%', left: ' 34%'
+     León --> top: ' 10%', left: ' 24%'
+     Palencia --> top: ' 16%', left: ' 30.5%'
+     Salamanca --> top: ' 29%', left: ' 23%'
+     Segovia --> top: ' 28.5%', left: ' 34%'
      Soria --> top: ' 21%', left: ' 45%'
      Valladolid --> top: ' 21%', left: ' 30%'
-     Zamora --> top: ' 20%', left: ' 23%'
+     Zamora --> top: ' 22%', left: ' 23%'
   - Castilla-La Mancha: 
-     Albacete --> top: ' 52%', left: ' 50%'
-     Ciudad Real --> top: ' 52%', left: ' 50%'
-     Cuenca --> top: ' 52%', left: ' 37%'
-     Guadalajara --> top: ' 32%', left: ' 45%'
-     Toledo --> top: ' 41%', left: ' 46%'
+     Albacete --> top: ' 51%', left: ' 50%'
+     Ciudad Real --> top: ' 52%', left: ' 35%'
+     Cuenca --> top: ' 40%', left: ' 50%'
+     Guadalajara --> top: ' 31%', left: ' 40%'
+     Toledo --> top: ' 41%', left: ' 35%'
   - Cataluña: 
-     Barcelona --> top: '21%', left: '78%'
+     Barcelona --> top: '22%', left: '79%'
      Gerona --> top: '17%', left: '83%'
-     Lérida --> top: '17%', left: '72%'
-     Tarragona --> top: '25.75%', left: '70%'
-  - Extremadura: 
+     Lérida --> top: '21%', left: '68%'
+     Tarragona --> top: '27%', left: '70%'
+  - Extremadura:                                      aaaaaaaaaaaa 
      Badajoz --> top: '56%', left: '18%'
      Cáceres --> top: '42%', left: '23%'
   - Galicia: 
