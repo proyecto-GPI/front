@@ -1,6 +1,6 @@
 /* src/Tarifas.css */
 .tarifas-container {
-    background-color: #000;
+    background-color: #333;
     color: #fff;
     min-height: 100vh;
     padding: 10px;
@@ -30,14 +30,16 @@
   }
   
   .tarifa-block {
-    width: 300px;
+    width: 350px;
     border: 1px solid #444;
+    background-color: #fff;
+    color: #000;
     padding: 8px;
     border-radius: 6px;
   }
   
   .tarifa-label {
-    margin-bottom: 6px;
+    margin-bottom: 15px;
     font-size: 1.1rem;
     text-align: center;
   }
@@ -46,12 +48,12 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     position: relative;
   }
   
   .option-name {
-    width: 40px;
+    width: 150px;
     font-size: 0.9rem;
   }
   
@@ -68,9 +70,9 @@
   
   .info-box {
     position: absolute;
-    left: 90px;
+    left: 325px;
     top: 0;
-    background: #222;
+    background: #fff;
     border: 1px solid #555;
     padding: 4px;
     border-radius: 4px;
