@@ -8,6 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
   // Obtén los setters del contexto
   const { 
     csetFirstName,
@@ -18,7 +19,8 @@ function Login() {
     csetConfirmPassword,
     cid,
     cofinicio,
-    cSetid
+    cSetid,
+    settipouser    // <-- Asegúrate de que esté definido en AppContext
   } = useContext(AppContext);
 
   const handleLogin = async (e) => {
@@ -29,10 +31,9 @@ function Login() {
         headers: {
           "Content-Type": "application/json"
         },
-        // Se envían los datos en el formato que espera la API: email y password.
         body: JSON.stringify({ correo: username, contrasenya: password })
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         setError(errorData.detail || "Error en la autenticación");
@@ -40,18 +41,19 @@ function Login() {
       }
       
       const data = await response.json();
+      // Eliminamos el '+' erróneo: ahora sí es un llamado válido
+      settipouser(data.tipo_cliente);
+
       const userid = data.id;
-      cSetid(data.id);
+      cSetid(userid);
       setError("");
-      // Aquí puedes guardar datos (por ejemplo, un token o el id) y redirigir
-      if(cofinicio){
+
+      if (cofinicio) {
         navigate("/renting");
-
-      }
-      else{
+      } else {
         navigate("/");
-
       }
+
     } catch (err) {
       console.error("Error en el login:", err);
       setError("Error interno. Inténtalo más tarde.");

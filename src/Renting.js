@@ -114,7 +114,7 @@ const Renting = () => {
   const handleSelectCar = (car) => {
     // Almacena el id del coche seleccionado en la variable de contexto
     csetidcoche(car.id);
-    navigate("/reservas");
+    navigate("/tarifas");
   };
 
   return (

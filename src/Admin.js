@@ -3,39 +3,67 @@ import { Link } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import './Admin.css';
 
-// Datos de prueba si falla el fetch
+// Datos de prueba si falla el fetch de oficinas
 const fallbackOffices = [
   { id_oficina: 1, nombre: 'Oficina Madrid', direccion: 'Calle Falsa 123', ciudad: 'Madrid' },
   { id_oficina: 2, nombre: 'Oficina Barcelona', direccion: 'Av. Diagonal 456', ciudad: 'Barcelona' },
 ];
 
-export default function Admin() {
-  const [addOpenOffice, setAddOpenOffice] = useState(false);
-  const [modifyOpenOffice, setModifyOpenOffice] = useState(false);
-  const [offices, setOffices] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({ id_oficina: '', nombre: '', direccion: '', ciudad: '' });
-  const [selectedOriginal, setSelectedOriginal] = useState(null);
+// Datos de prueba si falla el fetch de coches
+const fallbackCoches = [
+  { id: 1, marca: 'Toyota', modelo: 'Corolla', matricula: '1234ABC' },
+  { id: 2, marca: 'Ford', modelo: 'Focus',   matricula: '5678DEF' },
+];
 
-  // Fetch oficinas
+export default function Admin() {
+  // --- Estado oficinas ---
+  const [addOpenOffice, setAddOpenOffice]         = useState(false);
+  const [modifyOpenOffice, setModifyOpenOffice]   = useState(false);
+  const [offices, setOffices]                     = useState([]);
+  const [loadingOffices, setLoadingOffices]       = useState(false);
+  const [formOffice, setFormOffice]               = useState({ id_oficina: '', nombre: '', direccion: '', ciudad: '' });
+  const [selectedOriginalOffice, setSelectedOriginalOffice] = useState(null);
+
+  // --- Estado coches ---
+  const [modifyOpenCars, setModifyOpenCars]       = useState(false);
+  const [coches, setCoches]                       = useState([]);
+  const [loadingCoches, setLoadingCoches]         = useState(false);
+
+  // --- Fetch oficinas ---
   const fetchOffices = async () => {
-    setLoading(true);
+    setLoadingOffices(true);
     try {
       const res = await fetch('http://127.0.0.1:8000/api/oficinas');
-      if (!res.ok) throw new Error('Network error');
+      if (!res.ok) throw new Error('Network error oficinas');
       const data = await res.json();
       setOffices(data);
     } catch {
       setOffices(fallbackOffices);
     } finally {
-      setLoading(false);
+      setLoadingOffices(false);
     }
   };
 
+  // --- Fetch coches ---
+  const fetchCoches = async () => {
+    setLoadingCoches(true);
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/coches');
+      if (!res.ok) throw new Error('Network error coches');
+      const data = await res.json();
+      setCoches(data);
+    } catch {
+      setCoches(fallbackCoches);
+    } finally {
+      setLoadingCoches(false);
+    }
+  };
+
+  // --- Toggles ---
   const toggleAddOffice = useCallback(() => {
     setAddOpenOffice(o => !o);
-    setFormData({ id_oficina: '', nombre: '', direccion: '', ciudad: '' });
-    setSelectedOriginal(null);
+    setFormOffice({ id_oficina: '', nombre: '', direccion: '', ciudad: '' });
+    setSelectedOriginalOffice(null);
     setModifyOpenOffice(false);
   }, []);
 
@@ -43,75 +71,83 @@ export default function Admin() {
     const next = !modifyOpenOffice;
     setModifyOpenOffice(next);
     setAddOpenOffice(false);
-    setSelectedOriginal(null);
+    setSelectedOriginalOffice(null);
     if (next) fetchOffices();
   }, [modifyOpenOffice]);
 
-  const handleChange = e => {
+  const toggleModifyCars = useCallback(() => {
+    const next = !modifyOpenCars;
+    setModifyOpenCars(next);
+    // Si abrimos el panel de coches, lo cargamos
+    if (next) fetchCoches();
+  }, [modifyOpenCars]);
+
+  // --- Formularios oficinas ---
+  const handleOfficeChange = e => {
     const { name, value } = e.target;
-    setFormData(fd => ({ ...fd, [name]: value }));
+    setFormOffice(f => ({ ...f, [name]: value }));
   };
 
-  // Añadir Oficina
+  // --- Añadir oficina ---
   const handleAddOffice = async e => {
     e.preventDefault();
     try {
       const res = await fetch('http://127.0.0.1:8000/api/add_oficinas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formOffice),
       });
       if (!res.ok) {
-        const err = await res.json();
-        console.error('Error al añadir oficina:', err.detail || res.statusText);
+        console.error('Error al añadir oficina:', (await res.json()).detail);
         return;
       }
       await fetchOffices();
       setAddOpenOffice(false);
     } catch (err) {
-      console.error('Error de red al añadir oficina:', err);
+      console.error('Error red añadir oficina:', err);
     }
   };
 
-  // Seleccionar Oficina para modificar
+  // --- Seleccionar oficina para modificar ---
   const selectOffice = office => {
-    setSelectedOriginal(office);
-    setFormData({ ...office });
+    setSelectedOriginalOffice(office);
+    setFormOffice({ ...office });
   };
 
-  // Guardar modificación: delete + add
+  // --- Modificar oficina (delete + add) ---
   const handleModifyOffice = async e => {
     e.preventDefault();
-    if (!selectedOriginal) return;
-    const unchanged = ['id_oficina','nombre','direccion','ciudad'].every(
-      key => formData[key] === selectedOriginal[key]
-    );
+    if (!selectedOriginalOffice) return;
+    // Si no cambió nada, salimos
+    const keys = ['id_oficina','nombre','direccion','ciudad'];
+    const unchanged = keys.every(k => formOffice[k] === selectedOriginalOffice[k]);
     if (unchanged) {
-      setSelectedOriginal(null);
+      setSelectedOriginalOffice(null);
       return;
     }
     try {
-      const delRes = await fetch(`http://127.0.0.1:8000/api/delete_oficinas/${selectedOriginal.id_oficina}`, { method: 'DELETE' });
+      const delRes = await fetch(
+        `http://127.0.0.1:8000/api/delete_oficinas/${selectedOriginalOffice.id_oficina}`,
+        { method: 'DELETE' }
+      );
       if (!delRes.ok) {
-        const err = await delRes.json();
-        console.error('Error al borrar oficina:', err.detail || delRes.statusText);
+        console.error('Error al borrar oficina:', (await delRes.json()).detail);
         return;
       }
       const addRes = await fetch('http://127.0.0.1:8000/api/add_oficinas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formOffice),
       });
       if (!addRes.ok) {
-        const err = await addRes.json();
-        console.error('Error al añadir oficina modificada:', err.detail || addRes.statusText);
+        console.error('Error al añadir oficina modificada:', (await addRes.json()).detail);
         return;
       }
       await fetchOffices();
-      setSelectedOriginal(null);
+      setSelectedOriginalOffice(null);
       setModifyOpenOffice(false);
     } catch (err) {
-      console.error('Error de red al modificar oficina:', err);
+      console.error('Error red modificar oficina:', err);
     }
   };
 
@@ -131,10 +167,18 @@ export default function Admin() {
           <button onClick={toggleAddOffice}>Añadir oficina</button>
           {addOpenOffice && (
             <form className="office-form-inline open" onSubmit={handleAddOffice}>
-              <label>ID:<input name="id_oficina" value={formData.id_oficina} onChange={handleChange} required /></label>
-              <label>Nombre:<input name="nombre" value={formData.nombre} onChange={handleChange} required /></label>
-              <label>Dirección:<input name="direccion" value={formData.direccion} onChange={handleChange} required /></label>
-              <label>Ciudad:<input name="ciudad" value={formData.ciudad} onChange={handleChange} required /></label>
+              <label>ID:
+                <input name="id_oficina"   value={formOffice.id_oficina} onChange={handleOfficeChange} required />
+              </label>
+              <label>Nombre:
+                <input name="nombre"       value={formOffice.nombre}     onChange={handleOfficeChange} required />
+              </label>
+              <label>Dirección:
+                <input name="direccion"    value={formOffice.direccion}  onChange={handleOfficeChange} required />
+              </label>
+              <label>Ciudad:
+                <input name="ciudad"       value={formOffice.ciudad}     onChange={handleOfficeChange} required />
+              </label>
               <div className="form-actions">
                 <button type="submit" className="btn-save">Guardar</button>
                 <button type="button" className="btn-cancel" onClick={toggleAddOffice}>Cancelar</button>
@@ -147,32 +191,65 @@ export default function Admin() {
 
         {/* DERECHA: Modificar */}
         <div className="right-column">
+          {/* --- Modificar Oficina --- */}
           <button onClick={toggleModifyOffice}>Modificar oficina</button>
           {modifyOpenOffice && (
             <div className="office-list-inline open">
-              {loading ? <p>Cargando...</p> : (
-                !selectedOriginal ? (
-                  <ul>
-                    {offices.map(o => (
-                      <li key={o.id_oficina} onClick={() => selectOffice(o)}>{o.nombre}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <form className="office-form-inline open" onSubmit={handleModifyOffice}>
-                    <label>ID:<input name="id_oficina" value={formData.id_oficina} onChange={handleChange} required /></label>
-                    <label>Nombre:<input name="nombre" value={formData.nombre} onChange={handleChange} required /></label>
-                    <label>Dirección:<input name="direccion" value={formData.direccion} onChange={handleChange} required /></label>
-                    <label>Ciudad:<input name="ciudad" value={formData.ciudad} onChange={handleChange} required /></label>
-                    <div className="form-actions">
-                      <button type="submit" className="btn-save">Guardar</button>
-                      <button type="button" className="btn-cancel" onClick={() => setSelectedOriginal(null)}>Cancelar</button>
-                    </div>
-                  </form>
-                )
-              )}
+              {loadingOffices 
+                ? <p>Cargando oficinas...</p>
+                : !selectedOriginalOffice 
+                  ? (
+                    <ul>
+                      {offices.map(o => (
+                        <li key={o.id_oficina} onClick={() => selectOffice(o)}>
+                          {o.nombre} ({o.ciudad})
+                        </li>
+                      ))}
+                    </ul>
+                  )
+                  : (
+                    <form className="office-form-inline open" onSubmit={handleModifyOffice}>
+                      <label>ID:
+                        <input name="id_oficina" value={formOffice.id_oficina} onChange={handleOfficeChange} required />
+                      </label>
+                      <label>Nombre:
+                        <input name="nombre" value={formOffice.nombre} onChange={handleOfficeChange} required />
+                      </label>
+                      <label>Dirección:
+                        <input name="direccion" value={formOffice.direccion} onChange={handleOfficeChange} required />
+                      </label>
+                      <label>Ciudad:
+                        <input name="ciudad" value={formOffice.ciudad} onChange={handleOfficeChange} required />
+                      </label>
+                      <div className="form-actions">
+                        <button type="submit" className="btn-save">Guardar</button>
+                        <button type="button" className="btn-cancel" onClick={() => setSelectedOriginalOffice(null)}>Cancelar</button>
+                      </div>
+                    </form>
+                  )
+              }
             </div>
           )}
-          <button onClick={() => {/* lógica modificar coche */}}>Modificar coche</button>
+
+          {/* --- Modificar Coche --- */}
+          <button onClick={toggleModifyCars}>Modificar coche</button>
+          {modifyOpenCars && (
+            <div className="office-list-inline open">
+              {loadingCoches
+                ? <p>Cargando coches...</p>
+                : (
+                  <ul>
+                    {coches.map(c => (
+                      <li key={c.id}>
+                        {c.marca} {c.modelo} — {c.matricula}
+                      </li>
+                    ))}
+                  </ul>
+                )
+              }
+            </div>
+          )}
+
           <button onClick={() => {/* lógica modificar tarifa */}}>Modificar tarifa</button>
         </div>
       </div>

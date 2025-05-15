@@ -16,6 +16,8 @@ export const AppProvider = ({ children }) => {
   const [cfecharec, csetfecharec]= useState("");
   const [cfechadev, csetfechadev]= useState("");
   const [idcoche,csetidcoche]= useState("");
+  const [tipouser,settipouser]= useState("");
+
 
 
   return (
@@ -31,7 +33,8 @@ export const AppProvider = ({ children }) => {
       cofinal, csetofinal,
       cfecharec, csetfecharec,
      cfechadev, csetfechadev,
-     idcoche,csetidcoche
+     idcoche,csetidcoche,
+     tipouser,settipouser
 
     }}>
       {children}

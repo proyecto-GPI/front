@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';  // <-- Importamos useNavigate
 import { FaInfoCircle, FaHome } from 'react-icons/fa';
 import './Tarifas.css';
 
@@ -9,8 +9,9 @@ export default function Tarifas() {
   const [showInfoFor, setShowInfoFor] = useState(null);
   const [error, setError] = useState('');
   const containerRef = useRef(null);
+  const navigate = useNavigate(); // <-- Inicializamos el hook
 
-  // Fetch all tarifas on mount
+  // Fetch de todas las tarifas al montar
   useEffect(() => {
     const fetchTarifas = async () => {
       try {
@@ -39,12 +40,12 @@ export default function Tarifas() {
     if (!selectedTarifa) {
       setError('Debe seleccionar una tarifa antes de proceder');
     } else {
-      console.log('Proceder con tarifa:', selectedTarifa);
-      // lógica de pago futura
+      // Navegamos a /reservas en lugar de la lógica de pago
+      navigate('/reservas');
     }
   };
 
-  // Cierra tooltip fuera
+  // Cierra tooltip al clicar fuera
   useEffect(() => {
     function handleClickOutside(e) {
       const box = containerRef.current?.querySelector('.info-box');
@@ -99,7 +100,10 @@ export default function Tarifas() {
           );
         })}
       </div>
-      <button className="proceed-btn" onClick={handleProceed}>Proceder al pago</button>
+
+      <button className="proceed-btn" onClick={handleProceed}>
+        Proceder al pago
+      </button>
     </div>
   );
 }
